@@ -1,0 +1,17 @@
+/* hero.css */
+.hero { padding: 28px 0; }
+.hero-inner { display:flex; align-items:center; gap:24px; }
+.hero-left { flex:1; max-width:760px; }
+.hero-title { font-size:32px; margin:0 0 8px 0; line-height:1.05; }
+.hero-right { width:360px; display:flex; align-items:center; justify-content:center; }
+.hero-card {
+  background: linear-gradient(135deg, rgba(124,92,255,0.12), rgba(0,209,255,0.06));
+  padding:18px; border-radius:12px; width:100%; height:160px; display:flex; flex-direction:column; justify-content:center;
+  box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+}
+.product-preview { font-weight:700; font-size:18px; }
+.price { margin-top:6px; font-weight:700; color:var(--muted); }
+@media (max-width:900px) {
+  .hero-inner { flex-direction:column; }
+  .hero-right { width:100%; }
+}

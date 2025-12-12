@@ -1,0 +1,54 @@
+/* index.css - global styles and variables */
+:root {
+  --bg: #0f1724;
+  --panel: #0b1220;
+  --muted: #9aa6b2;
+  --accent-start: #7c5cff;
+  --accent-end: #00d1ff;
+  --glass: rgba(255,255,255,0.03);
+  --radius: 14px;
+  --container-width: 1200px;
+}
+
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: linear-gradient(180deg,#071022 0%, #081426 100%);
+  color: #e6eef6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* container */
+.container {
+  max-width: var(--container-width);
+  margin: 24px auto;
+  padding: 0 18px;
+}
+
+/* baseline buttons */
+.btn {
+  background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+  border: none;
+  color: #021428;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn.ghost {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.06);
+  color: inherit;
+}
+
+/* small utility */
+.muted { color: var(--muted); }
+.row { display:flex; gap:12px; align-items:center; }
+
+/* responsive */
+@media (max-width: 900px) {
+  .container { margin: 12px auto; padding: 0 12px; }
+}

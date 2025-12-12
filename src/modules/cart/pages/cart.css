@@ -1,0 +1,10 @@
+/* cart.css */
+.cart-item {
+  display:flex;
+  gap:12px;
+  align-items:center;
+  padding:12px;
+  border-radius:10px;
+  background: rgba(255,255,255,0.01);
+  margin-bottom:10px;
+}
