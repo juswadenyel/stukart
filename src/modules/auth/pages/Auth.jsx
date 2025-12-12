@@ -1,45 +1,106 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./auth.css";
 
-export default function Auth() {
-  const [mode, setMode] = useState("login"); // or 'register'
-  const [loading, setLoading] = useState(false);
+export default function Auth({ setUser }) {
+  const navigate = useNavigate();
+  const [isRegister, setIsRegister] = useState(false); // toggle between login/register
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState(""); // for register
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
-  function submit(e) {
+  // Simulated login
+  function handleLogin(e) {
     e.preventDefault();
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      alert(`${mode === "login" ? "Logged in" : "Account created"} (demo)`);
-    }, 700);
+    if (email && password) {
+      const user = { name: "Joshua", email }; // replace with backend check
+      localStorage.setItem("user", JSON.stringify(user));
+      setUser(user);
+      navigate("/");
+    } else {
+      setError("Please enter valid email and password");
+    }
+  }
+
+  // Simulated register
+  function handleRegister(e) {
+    e.preventDefault();
+    if (name && email && password) {
+      const user = { name, email };
+      localStorage.setItem("user", JSON.stringify(user));
+      setUser(user);
+      navigate("/");
+    } else {
+      setError("Please fill in all fields");
+    }
   }
 
   return (
-    <main className="container" style={{ paddingTop: 18 }}>
-      <div style={{ maxWidth: 920, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 420px", gap: 18 }}>
-        <div>
-          <h2>{mode === "login" ? "Welcome back" : "Create your account"}</h2>
-          <p className="muted">Use this demo auth to continue. This is client-side only for now.</p>
-          <div style={{ marginTop: 18 }}>
-            <form onSubmit={submit} style={{ display: "grid", gap: 10 }}>
-              {mode === "register" && <input placeholder="Full name" required />}
-              <input placeholder="Email" type="email" required />
-              <input placeholder="Password" type="password" required />
-              <button className="btn" type="submit" disabled={loading}>{loading ? "Working..." : (mode === "login" ? "Sign In" : "Create account")}</button>
-            </form>
-          </div>
-        </div>
+    <div className="auth-container">
+      <h2>{isRegister ? "Register" : "Login"} to Stukart</h2>
 
-        <aside style={{ padding: 18, borderRadius: 12, background: "linear-gradient(180deg, rgba(255,255,255,0.01), transparent)" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <h3 style={{ margin: 0 }}>{mode === "login" ? "New here?" : "Already have an account?"}</h3>
-            <button className="btn ghost" onClick={() => setMode(mode === "login" ? "register" : "login")}>{mode === "login" ? "Register" : "Sign in"}</button>
-          </div>
-          <p className="muted" style={{ marginTop: 12 }}>
-            This auth page is a placeholder: it demonstrates UI and local validation. Replace with your API logic when ready.
-          </p>
-        </aside>
+      <div className="auth-toggle">
+        <button
+          className={!isRegister ? "active" : ""}
+          onClick={() => setIsRegister(false)}
+        >
+          Login
+        </button>
+        <button
+          className={isRegister ? "active" : ""}
+          onClick={() => setIsRegister(true)}
+        >
+          Register
+        </button>
       </div>
-    </main>
+
+      {isRegister ? (
+        <form onSubmit={handleRegister} className="auth-form">
+          <input
+            type="text"
+            placeholder="Full Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          {error && <p className="error">{error}</p>}
+          <button type="submit">Register</button>
+        </form>
+      ) : (
+        <form onSubmit={handleLogin} className="auth-form">
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          {error && <p className="error">{error}</p>}
+          <button type="submit">Login</button>
+        </form>
+      )}
+    </div>
   );
 }

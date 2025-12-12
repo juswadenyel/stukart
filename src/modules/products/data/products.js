@@ -5,7 +5,8 @@ const PRODUCTS = [
     price: 129.0,
     rating: 4.8,
     badges: ["Best seller"],
-    description: "Premium full-grain leather backpack with padded laptop sleeve and water resistant lining."
+    description: "Premium full-grain leather backpack with padded laptop sleeve and water resistant lining.",
+    image: "/images/backpack.jpg" // <- add your image path here
   },
   {
     id: "p-002",
@@ -13,7 +14,8 @@ const PRODUCTS = [
     price: 199.0,
     rating: 4.7,
     badges: ["New"],
-    description: "Active noise cancellation, 40 hour battery life."
+    description: "Active noise cancellation, 40 hour battery life.",
+    image: "/images/headphones.jpg"
   },
   {
     id: "p-003",
@@ -21,7 +23,8 @@ const PRODUCTS = [
     price: 249.0,
     rating: 4.5,
     badges: [],
-    description: "Health tracking, GPS, 7-day battery."
+    description: "Health tracking, GPS, 7-day battery.",
+    image: "/images/smartwatch.jpg"
   },
   {
     id: "p-004",
@@ -29,7 +32,8 @@ const PRODUCTS = [
     price: 79.0,
     rating: 4.6,
     badges: ["Eco"],
-    description: "Touch dimmer and wireless charging base."
+    description: "Touch dimmer and wireless charging base.",
+    image: "/images/desk-lamp.jpg"
   },
   {
     id: "p-005",
@@ -37,7 +41,8 @@ const PRODUCTS = [
     price: 139.0,
     rating: 4.4,
     badges: [],
-    description: "Engineered for responsive cushioning and breathability."
+    description: "Engineered for responsive cushioning and breathability.",
+    image: "/images/shoes.jpg"
   }
 ];
 
