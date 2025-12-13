@@ -17,16 +17,18 @@ export default function AppRoutes({ user, setUser }) {
     <BrowserRouter>
       <Navbar user={user} setUser={setUser} />
       <Routes>
-        <Route path="/" element={<Home />} />
+        {/* Landing page */}
+        <Route path="/" element={<Auth setUser={setUser} />} />
+
+        {/* Other pages */}
+        <Route path="/home" element={<Home />} />
         <Route path="/products" element={<ProductList />} />
         <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/cart" element={<CartPage />} />
-        <Route path="/auth" element={<Auth setUser={setUser} />} />
         <Route path="/sell" element={<SellForm />} />
-
-        {/* Pass setUser to Profile */}
         <Route path="/profile" element={<Profile setUser={setUser} />} />
 
+        {/* Catch-all redirect */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       <Footer />

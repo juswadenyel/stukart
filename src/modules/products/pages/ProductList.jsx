@@ -36,13 +36,17 @@ export default function ProductList() {
           value={q}
           onChange={(e) => setQ(e.target.value)}
           style={{
-            padding: "8px 10px",
-            borderRadius: 8,
-            border: "1px solid rgba(0,0,0,0.1)",
-            background: "#1e2b4d",
-            color: "#f5f6fa",
+            padding: "10px 14px",
+            borderRadius: "var(--radius)",
+            border: "1px solid rgba(255,255,255,0.06)",
+            background: "var(--panel)",
+            color: "#e6eef6",
             minWidth: 200,
+            fontSize: "14px",
+            transition: "border-color 0.2s ease",
           }}
+          onFocus={(e) => (e.target.style.borderColor = "var(--accent-start)")}
+          onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.06)")}
         />
       </div>
 

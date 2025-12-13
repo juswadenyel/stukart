@@ -13,72 +13,44 @@ export default function Cart() {
   const total = subtotal + shipping + tax;
 
   return (
-    <main style={{ padding: 24, minHeight: "100vh", backgroundColor: "#0b1b3a" }}>
-      <h2 style={{ color: "#f5f6fa" }}>Your Cart</h2>
+    <main className="cart-main">
+      <h2>Your Cart</h2>
 
       {items.length === 0 ? (
-        <div style={{ marginTop: 12, color: "rgba(245,246,250,0.7)" }}>
+        <div className="cart-empty">
           Your cart is empty.
         </div>
       ) : (
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 320px", gap: 18 }}>
-          <div>
+        <div className="cart-grid">
+          <div className="cart-items">
             {items.map((item) => (
-              <div
-                key={item.id}
-                className="cart-item"
-                style={{
-                  background: "#1e2b4d",
-                  padding: 12,
-                  borderRadius: 12,
-                  display: "flex",
-                  gap: 12,
-                  alignItems: "center",
-                  marginBottom: 12,
-                }}
-              >
-                {/* Product image */}
+              <div key={item.id} className="cart-item">
                 <img
-                  src={item.image} // Use the product image
+                  src={item.image}
                   alt={item.title}
-                  style={{
-                    width: 86,
-                    height: 86,
-                    borderRadius: 10,
-                    objectFit: "cover",
-                  }}
+                  className="cart-item-image"
                 />
 
-                <div style={{ flex: 1 }}>
-                  <div style={{ fontWeight: 700, color: "#f5f6fa" }}>{item.title}</div>
-                  <div style={{ fontSize: 14, color: "rgba(245,246,250,0.7)" }}>
-                    ${item.price.toFixed(2)}
-                  </div>
+                <div className="cart-item-details">
+                  <div className="cart-item-title">{item.title}</div>
+                  <div className="cart-item-price">${item.price.toFixed(2)}</div>
                 </div>
 
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "flex-end",
-                    gap: 8,
-                  }}
-                >
+                <div className="cart-item-controls">
                   <input
                     type="number"
                     min="1"
                     max="99"
-                    value={item.qty || 1} // controlled input
+                    value={item.qty || 1}
                     onChange={(e) => update(item.id, Number(e.target.value) || 1)}
-                    style={{ width: 64, padding: 6, borderRadius: 8 }}
+                    className="cart-item-quantity"
                   />
-                  <div style={{ fontWeight: 700, color: "#f5f6fa" }}>
+                  <div className="cart-item-total">
                     ${(item.price * item.qty).toFixed(2)}
                   </div>
                   <button
-                    className="btn ghost"
+                    className="cart-item-remove"
                     onClick={() => remove(item.id)}
-                    style={{ padding: "6px 8px", borderColor: "#7c5cff", color: "#f5f6fa" }}
                   >
                     Remove
                   </button>
@@ -87,45 +59,33 @@ export default function Cart() {
             ))}
           </div>
 
-          <aside
-            style={{
-              background: "#1e2b4d",
-              padding: 16,
-              borderRadius: 12,
-              color: "#f5f6fa",
-              display: "flex",
-              flexDirection: "column",
-              gap: 8,
-            }}
-          >
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <aside className="cart-summary">
+            <div className="cart-summary-row">
               <div>Subtotal</div>
               <div>${subtotal.toFixed(2)}</div>
             </div>
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <div className="cart-summary-row">
               <div>Shipping</div>
               <div>${shipping.toFixed(2)}</div>
             </div>
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <div className="cart-summary-row">
               <div>Tax</div>
               <div>${tax.toFixed(2)}</div>
             </div>
-            <hr style={{ border: "none", height: 1, background: "#7c5cff", margin: "12px 0" }} />
-            <div style={{ display: "flex", justifyContent: "space-between", fontWeight: 700 }}>
+            <hr className="cart-summary-divider" />
+            <div className="cart-summary-row cart-summary-total">
               <div>Total</div>
               <div>${total.toFixed(2)}</div>
             </div>
-            <div style={{ marginTop: 12, display: "flex", gap: 8 }}>
+            <div className="cart-summary-buttons">
               <button
-                className="btn"
-                style={{ flex: 1, background: "#1e3a8a", color: "#fff", padding: "10px 0", borderRadius: 8 }}
+                className="cart-checkout-btn"
                 onClick={() => alert("Checkout flow - not implemented yet")}
               >
                 Checkout
               </button>
               <button
-                className="btn ghost"
-                style={{ flex: 1, border: "1px solid #7c5cff", color: "#f5f6fa", borderRadius: 8 }}
+                className="cart-clear-btn"
                 onClick={clear}
               >
                 Clear
